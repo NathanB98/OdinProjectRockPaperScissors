@@ -1,8 +1,12 @@
+//Plays 5 rounds of the game.
 function playGame() {
-    let computerMove = getComputerChoice();
-    let playerMove = playerSelection();
+    for(let i = 0; i < 5; i++) {
+        let computerMove = getComputerChoice();
+        let playerMove = playerSelection();
 
-    playRound(computerMove, playerMove);
+        console.log(`Round ${i}:`)
+        playRound(computerMove, playerMove);
+    }
 }
 
 //Runs a single round of Rock, Paper, Scissors. Uses computerMove and playerMove arguments from earlier functions.
@@ -62,6 +66,7 @@ function getComputerChoice() {
     }
 }
 
+//Formats the players input so only the first character is capitalised. Making for easier comparisons later.
 function formatPlayerInput(playerChoice) {
     let firstChar = playerChoice.charAt(0);
     firstChar = firstChar.toUpperCase();
