@@ -1,12 +1,9 @@
 //Plays 5 rounds of the game.
 function playGame() {
-    for(let i = 0; i < 5; i++) {
-        let computerMove = getComputerChoice();
-        let playerMove = playerSelection();
+    let computerMove = getComputerChoice();
+    let playerMove = playerSelection();
 
-        console.log(`Round ${i}:`)
-        playRound(computerMove, playerMove);
-    }
+    playRound(computerMove, playerMove);
 }
 
 //Runs a single round of Rock, Paper, Scissors. Uses computerMove and playerMove arguments from earlier functions.
