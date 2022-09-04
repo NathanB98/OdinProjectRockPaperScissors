@@ -1,9 +1,28 @@
-//Plays 5 rounds of the game.
-function playGame() {
-    let computerMove = getComputerChoice();
-    let playerMove = playerSelection();
+const buttons = document.querySelectorAll('button');
 
-    playRound(computerMove, playerMove);
+let playerChoice;
+
+//Eventlistener waits for user to pick a button, representing a move. Players choice is stored then the game function is called.
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        
+        if(button.id == 'rock') {
+            playerChoice = 'Rock';
+        } else if (button.id == 'paper') {
+            playerChoice = 'Paper';
+        } else {
+            playerChoice = 'Scissors';
+        }
+
+        playGame(playerChoice);
+    });
+});
+
+//Plays 5 rounds of the game.
+function playGame(playerChoice) {
+    let computerMove = getComputerChoice();
+
+    playRound(computerMove, playerChoice);
 }
 
 //Runs a single round of Rock, Paper, Scissors. Uses computerMove and playerMove arguments from earlier functions.
@@ -35,19 +54,6 @@ function playRound(computerMove, playerMove) {
     }
 }
 
-//Take input from user. Check if it is suitable. Return the move.
-function playerSelection() {
-    let playerChoice = prompt('Enter "Rock", "Paper", or "Scissors" to play.');
-    if (playerChoice != null) {
-        playerChoice = formatPlayerInput(playerChoice);
-    }
-
-    if(playerChoice == 'Rock' || playerChoice == 'Paper' || playerChoice == 'Scissors'){
-        return playerChoice;
-    } else {
-        alert('Please enter a valid move');
-    }
-}
 
 //Selects either Rock, Paper, or Scissors for the computers move.
 function getComputerChoice() {
@@ -61,15 +67,4 @@ function getComputerChoice() {
         case 2:
             return 'Scissors';
     }
-}
-
-//Formats the players input so only the first character is capitalised. Making for easier comparisons later.
-function formatPlayerInput(playerChoice) {
-    let firstChar = playerChoice.charAt(0);
-    firstChar = firstChar.toUpperCase();
-    let remainingChars = playerChoice.substring(1);
-    remainingChars = remainingChars.toLowerCase();
-
-    let formattedString = `${firstChar}${remainingChars}`;
-    return formattedString;
 }
